@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 public class AndJokeActivity extends AppCompatActivity {
 
+    public static final String JOKE_KEY ="JOKE" ;
     TextView textView;
     Intent intent;
     @Override
