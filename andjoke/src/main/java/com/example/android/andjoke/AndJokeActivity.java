@@ -15,7 +15,7 @@ public class AndJokeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_and_joke);
         Intent recJoke = getIntent();
-        String joke = recJoke.getStringExtra("INTAG");
+        String joke = recJoke.getStringExtra(JOKE_KEY);
 
 
         TextView textView = (TextView) findViewById(R.id.textView);

@@ -1,6 +1,5 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.JokePoller;
-import com.example.android.andjoke.AndJokeActivity;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 
@@ -23,10 +21,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(MainActivity.this);
-//        ClintAsync clintAsync = new ClintAsync();
-//
-//        new ClintAsync().execute(new Pair<Context, String>(this, "i'm the joke hehehe"));
+
 
 
     }
@@ -66,11 +63,17 @@ public class MainActivity extends AppCompatActivity {
         JokePoller javaJoke = new JokePoller();
         Toast.makeText(this, javaJoke.getJoke(), Toast.LENGTH_SHORT).show();
         String joke = javaJoke.getJoke();
-        Intent intentJoke = new Intent(this, AndJokeActivity.class);
-        intentJoke.putExtra(IntentExtraTag, joke);
-        startActivity(intentJoke);
+//        Intent intentJoke = new Intent(this, AndJokeActivity.class);
+//        intentJoke.putExtra(IntentExtraTag, joke);
+//        startActivity(intentJoke);
 
+        jokeAsync myjokeAsync = new jokeAsync(MainActivity.this);
+        myjokeAsync.execute();
     }
+
+
+
+
 
 
 }
