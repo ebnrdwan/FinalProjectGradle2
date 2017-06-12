@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.example.JokePoller;
 import com.google.android.gms.common.GoogleApiAvailability;
 
+import org.junit.runner.RunWith;
+
 
 public class MainActivity extends AppCompatActivity {
 

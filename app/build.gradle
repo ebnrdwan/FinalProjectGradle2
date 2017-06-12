@@ -33,4 +33,12 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:9.8.0'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile project(path: ':backend', configuration: 'android-endpoints')
+//    androidTestCompile 'com.android.support.test:runner:0.4'
+//    androidTestCompile 'com.android.support.test:rules:0.4'
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test:runner:0.4', {
+        //Solve conflict with dependency "versions for app (24.1.1) and test app (23.0.1) differ"
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'junit:junit:4.12'
 }
