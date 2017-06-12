@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -8,9 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.JokePoller;
-import com.google.android.gms.common.GoogleApiAvailability;
-
-import org.junit.runner.RunWith;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,9 +20,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+       PaidMainF paidMainF = new PaidMainF();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
 
 
-        GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(MainActivity.this);
+
+
+
 
 
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(MainActivity.this);
+
     }
 
 
