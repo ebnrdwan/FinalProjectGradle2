@@ -20,49 +20,49 @@ import java.io.IOException;
  */
 
 
-    public class jokeAsync extends AsyncTask<Void, Void, String> {
-        private static MyApi myApiService = null;
-        private Context mContext;
+public class jokeAsync extends AsyncTask<Void, Void, String> {
+    private static MyApi myApiService = null;
+    private Context mContext;
 
-        public jokeAsync (Context context){
-            mContext = context;
+    public jokeAsync(Context context) {
+        mContext = context;
+    }
+
+
+    @Override
+    protected String doInBackground(Void... params) {
+        if (myApiService == null) {  // Only do this once
+            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
+                    new AndroidJsonFactory(), null)
+                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
+                    .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+                        @Override
+                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                            abstractGoogleClientRequest.setDisableGZipContent(true);
+                        }
+                    });
+
+            // end options for devappserver
+
+            myApiService = builder.build();
         }
 
-
-        @Override
-        protected String doInBackground(Void... params){
-            if(myApiService == null) {  // Only do this once
-                MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
-                        new AndroidJsonFactory(), null)
-                        .setRootUrl("http://10.0.2.2:8080/_ah/api/")
-                .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
-                    @Override
-                    public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
-                        abstractGoogleClientRequest.setDisableGZipContent(true);
-                    }
-                });
-
-                // end options for devappserver
-
-                myApiService = builder.build();
-            }
-
-            try {
-                return myApiService.recieveMyJoke().execute().getData();
-            } catch (IOException e) {
-                return e.getMessage();
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(mContext, AndJokeActivity.class);
-
-            Log.d("LOGRESULT",result);
-            intent.putExtra(AndJokeActivity.JOKE_KEY, result);
-            mContext.startActivity(intent);
+        try {
+            return myApiService.recieveMyJoke().execute().getData();
+        } catch (IOException e) {
+            return e.getMessage();
         }
     }
+
+    @Override
+    protected void onPostExecute(String result) {
+
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(mContext, AndJokeActivity.class);
+
+        Log.d("LOGRESULT", result);
+        intent.putExtra(AndJokeActivity.JOKE_KEY, result);
+        mContext.startActivity(intent);
+    }
+}
 

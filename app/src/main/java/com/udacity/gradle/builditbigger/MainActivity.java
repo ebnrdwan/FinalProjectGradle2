@@ -1,6 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -9,35 +9,21 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.JokePoller;
+import com.example.android.andjoke.AndJokeActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    public static String IntentExtraTag = "INTAG";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       PaidMainF paidMainF = new PaidMainF();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-
-
-
-
-
-
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,19 +44,18 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
+    //used in the first required step, but it is not functioning any more
     public void tellJoke(View view) {
 
         JokePoller javaJoke = new JokePoller();
         Toast.makeText(this, javaJoke.getJoke(), Toast.LENGTH_SHORT).show();
         String joke = javaJoke.getJoke();
-//        Intent intentJoke = new Intent(this, AndJokeActivity.class);
-//        intentJoke.putExtra(IntentExtraTag, joke);
-//        startActivity(intentJoke);
-
+        Intent intentJoke = new Intent(this, AndJokeActivity.class);
+        intentJoke.putExtra(getString(R.string.jokecode), joke);
+        startActivity(intentJoke);
         jokeAsync myjokeAsync = new jokeAsync(MainActivity.this);
         myjokeAsync.execute();
     }
