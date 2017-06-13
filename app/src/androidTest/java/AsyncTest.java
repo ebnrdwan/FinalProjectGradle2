@@ -13,11 +13,6 @@ import java.util.concurrent.TimeUnit;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
-/**
- * udacity-builditbigger
- * Created on 31/08/2016 by Espace de travail.
- */
-
 
 @RunWith(AndroidJUnit4.class)
 public class AsyncTest {
