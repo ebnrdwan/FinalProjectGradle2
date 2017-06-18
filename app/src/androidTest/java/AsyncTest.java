@@ -1,9 +1,8 @@
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
+import com.udacity.gradle.builditbigger.JokeAsync;
 import com.udacity.gradle.builditbigger.MainActivity;
-import com.udacity.gradle.builditbigger.R;
-import com.udacity.gradle.builditbigger.jokeAsync;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,9 +23,9 @@ public class AsyncTest {
     public void testDoInBackground() throws Exception {
         try {
             MainActivity mainActivity = new MainActivity();
-            jokeAsync jokeAsync = new jokeAsync(mainActivity);
-            jokeAsync.execute();
-            String result = jokeAsync.get(30, TimeUnit.SECONDS);
+            JokeAsync JokeAsync = new JokeAsync(mainActivity);
+            JokeAsync.execute();
+            String result = JokeAsync.get(30, TimeUnit.SECONDS);
             assertNotNull(result);  // it could be done by Google Guava checkNotNull() method
             assertTrue(result.length() > 0);
 

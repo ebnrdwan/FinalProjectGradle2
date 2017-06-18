@@ -20,11 +20,11 @@ import java.io.IOException;
  */
 
 
-public class jokeAsync extends AsyncTask<Void, Void, String> {
+public class JokeAsync extends AsyncTask<Void, Void, String> {
     private static MyApi myApiService = null;
     private Context mContext;
 
-    public jokeAsync(Context context) {
+    public JokeAsync(Context context) {
         mContext = context;
     }
 

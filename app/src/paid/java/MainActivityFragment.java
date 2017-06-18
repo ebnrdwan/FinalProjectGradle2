@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
+import com.udacity.gradle.builditbigger.JokeAsync;
 import com.udacity.gradle.builditbigger.R;
-import com.udacity.gradle.builditbigger.jokeAsync;
 
 
 /**
@@ -28,7 +28,7 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                jokeAsync myjokeAsync = new jokeAsync(getActivity());
+                JokeAsync myjokeAsync = new JokeAsync(getActivity());
                 myjokeAsync.execute();
             }
         });
